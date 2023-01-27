@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "bcd26610-2db5-4bc5-903d-0651a6cabb6a",
+		"name": "Hotel Booking System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25087123"
+	},
+	"item": [
+		{
+			"name": "GetData",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{hotel url}}/booking/{{Rafi's id}}",
+					"host": [
+						"{{hotel url}}"
+					],
+					"path": [
+						"booking",
+						"{{Rafi's id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload new data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var a=pm.response.json()\r",
+							"pm.environment.set(\"Rafi's id\",a.bookingid)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"Shahadat\",\r\n    \"lastname\": \"Rafi\",\r\n    \"totalprice\": 245,\r\n    \"depositpaid\": true,\r\n    \"bookingdates\": {\r\n        \"checkin\": \"2022-12-31\",\r\n        \"checkout\": \"2023-01-03\"\r\n    },\r\n    \"additionalneeds\": \"french breakfast\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hotel url}}/booking/",
+					"host": [
+						"{{hotel url}}"
+					],
+					"path": [
+						"booking",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
